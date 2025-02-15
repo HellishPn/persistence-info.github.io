@@ -1,0 +1,51 @@
+## (HKEY Classes Root) HKCR File Extentions  <!-- general "title" of the persistence. Good to be unique. -->
+<!-- separate sections by two empty lines -->
+<!-- do not remove empty sections  -->
+
+
+### Location: <!-- where to find it -->
+`Computer\HKEY_CLASSES_ROOT`
+`Computer\HKEY_CURRENT_USER\SOFTWARE\Classes`
+`Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Classes`
+
+
+### Classification: <!-- see "how it works" document. Empty lime must go next. -->
+
+|Criteria|Value|
+|:---|:---|
+|Permissions|User; Admin|
+|Security context| User; System[^1] |
+|Persistence type| Registry |
+|Code type|EXE; DLL; Other|
+|Launch type|Automatic; Any logon required|
+|Impact|Non-Destructive|
+|OS Version|All OS versions|
+|Dependencies|OS only|
+|Toolset|Scriptable|
+
+
+### Description:<!-- add two EOLs or two spaces at the end of line to create a line break -->
+the `Computer\HKEY_CLASSES_ROOT` is a combined hive of 'Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Classes' and 'Computer\HKEY_CURRENT_USER\SOFTWARE\Classes', in HKLM case you need admin rights, in HKCU not.
+as you explore different file types you see interesting thing, some start specific application which you can concatenate cmd with /c to start you application plus the legitimate one, or whatever you prefer.
+in some cases like jpegtile you see 'Run32dll.exe' which is in LOLBIN project which acts  evasive to concatenate you're malicious DLL with it.
+as leverage any file extention, youre code may not lunch instantly so be patient.
+and as the list continuous, you see vast amount of targets :)
+Detection is so simple, just do Endpoint Baselining with Powershell and you're good to go (Configuring SySmon for looking at these hives is a little bit noisy and hard but in case that you wanted to configure that, look for famous ones)
+NOTE: some registry keys may differ as you switch from windows 10 to 11 and vice versa, but most of them are the same
+
+
+### References: <!-- use <...> or [abc](https://...) syntax. Prepend with "- " when more than one -->
+<https://learn.microsoft.com/fr-fr/windows/win32/sysinfo/hkey-classes-root-key/>
+
+
+### Credits: <!-- use [abc](https://...) syntax. Prepend with "- " when more than one. -->
+
+
+### See also: <!-- if refering to the same repo, use [Name](file.md) syntax. -->
+<!-- prepend with "- " if more than one -->
+
+
+### Remarks: <!-- see the usage in the "classification" section. Use only 1:1 references i.e. not referring to the same footnote from two different places -->
+[^1]: Depends on the key to be available 
+[^2]: CMD will show for a glance in some cases
+[^3]: Execution level depend on the user privilege (in most cases)
