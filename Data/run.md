@@ -24,7 +24,8 @@
 ### Description:
 Well known key, used by many apps. Any file path specified in a Registry value will be used to `ShellExecute()` the specified file by explorer.exe when user logs on. Multiple values can exist.
 >  The Run key makes the program run every time the user logs on, while the RunOnce key makes the program run one time, and then the key is deleted.
-
+Evasion TIP : using c:\windows\system32\cmd.exe /c start %windir%\system32\SecurityHealthSystray.exe && C:\..\..\Malware.exe , this the OLD SYSinternals Autoruns can't detect it and NEW version shows CMD
+Evasion Tip : Using c:\windows\system32\cmd.exe /c start %windir%\system32\SecurityHealthSystray.exe && c:\windows\Explorer.exe C:\..\..\Malware.exe, you can change the Parent child relashionship which is SySinternals Process Explorer can't detect anything suspicious
 
 ### References:
 - <https://docs.microsoft.com/en-us/windows/win32/setupapi/run-and-runonce-registry-keys>
